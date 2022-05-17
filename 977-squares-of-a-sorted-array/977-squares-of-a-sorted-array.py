@@ -4,9 +4,7 @@ class Solution:
         abs_nums = list(map(abs, nums))
         left = 0
         right = n-1
-        
         result = []
-        
         while(left <= right):
             left_abs = abs_nums[left]
             right_abs = abs_nums[right]

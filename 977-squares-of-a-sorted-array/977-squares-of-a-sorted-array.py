@@ -1,32 +1,22 @@
 class Solution:
     def sortedSquares(self, nums: List[int]) -> List[int]:
-        def square(v):
-            return int(math.pow(v,2))
         n = len(nums)
-        negative_list = []
-        positive_list = []
-        for num in nums:
-            if num < 0:
-                negative_list.append(num)
-            else:
-                positive_list.append(num)
-        
-        negative_list = list(map(square, negative_list))
-        positive_list = list(map(square, positive_list))
-        positive_list.reverse()
+        left = 0
+        right = n-1
         
         result = []
-        for i in range(n):
-            if not negative_list:
-                result.extend(list(reversed(positive_list)))
-                break
-            if not positive_list:
-                result.extend(list(reversed(negative_list)))
-                break
-            neg_item = negative_list[-1]
-            pos_item = positive_list[-1]
-            if neg_item <= pos_item:
-                result.append(negative_list.pop())
+        
+        while(left <= right):
+            left_abs = abs(nums[left])
+            right_abs = abs(nums[right])
+            if left_abs > right_abs:
+                result.append(left_abs**2)
+                left+=1
             else:
-                result.append(positive_list.pop())
+                result.append(right_abs**2)
+                right-=1
+        result.reverse()
         return result
+                
+            
+            

@@ -5,9 +5,13 @@ class Solution:
         """
         n = len(nums)
         k = k%n
+        rotated_items = []
         for i in range(k):
             item = nums.pop()
-            nums.insert(0, item)
+            rotated_items.append(item)
+        nums.reverse()
+        nums.extend(rotated_items)
+        nums.reverse()
         
         
         

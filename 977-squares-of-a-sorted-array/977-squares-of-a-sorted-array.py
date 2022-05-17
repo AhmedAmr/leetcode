@@ -16,6 +16,3 @@ class Solution:
                 right-=1
         result.reverse()
         return result
-                
-            
-            

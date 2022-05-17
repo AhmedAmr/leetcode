@@ -5,12 +5,8 @@ class Solution:
         """
         n = len(nums)
         k = k%n
-        rotated_items = []
+        rotated_items = nums[-k::] if k >0 else []
         for i in range(k):
-            item = nums.pop()
-            rotated_items.append(item)
-        rotated_items.reverse()
+            nums.pop()
+        
         nums[0:0] = rotated_items
-        
-        
-        

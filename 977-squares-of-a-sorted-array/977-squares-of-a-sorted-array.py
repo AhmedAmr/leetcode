@@ -8,7 +8,7 @@ class Solution:
         while(left <= right):
             left_sqr = squared_nums[left]
             right_sqr = squared_nums[right]
-            if left_sqr > right_sqr:
+            if left_sqr >= right_sqr:
                 result.append(left_sqr)
                 left+=1
             else:

@@ -8,6 +8,9 @@ class Solution:
         while(left <= right):
             left_sqr = squared_nums[left]
             right_sqr = squared_nums[right]
+            if nums[left] > 0:
+                result.extend(list(reversed(squared_nums[left:right+1])))
+                break
             if left_sqr > right_sqr:
                 result.append(left_sqr)
                 left+=1

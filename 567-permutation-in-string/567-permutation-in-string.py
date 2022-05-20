@@ -12,16 +12,15 @@ class Solution:
             return False
         
         s1map = dict(Counter(s1))
-        s2map = defaultdict(int, dict(Counter(s2[0:n])))
+        s2map = None
         
-        if s1map == s2map:
-            return True
-        s2map = drop_empty_values(s2map)
-        
-        for i in range(1, m-n+1):
-            s2map[s2[i-1]]-=1
-            s2map[s2[i+n-1]]+=1
-            s2map = drop_empty_values(s2map)
+        for i in range(0, m-n+1):
+            if i == 0:
+                s2map = defaultdict(int, dict(Counter(s2[i:n])))
+            else:
+                s2map[s2[i-1]]-=1
+                s2map[s2[i+n-1]]+=1
+                s2map = drop_empty_values(s2map)
             if s1map == s2map:
                 return True
         return False

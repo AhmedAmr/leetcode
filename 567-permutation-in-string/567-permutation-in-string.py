@@ -8,6 +8,8 @@ class Solution:
         n = len(s1)
         m = len(s2)
         
+        unique = len(set(s1))
+        
         if n > m:
             return False
         
@@ -21,8 +23,9 @@ class Solution:
                 s2map[s2[i-1]]-=1
                 s2map[s2[i+n-1]]+=1
                 s2map = drop_empty_values(s2map)
-            if s1map == s2map:
-                return True
+            if len(s2map) == unique:
+                if s1map == s2map:
+                    return True
         return False
     
     

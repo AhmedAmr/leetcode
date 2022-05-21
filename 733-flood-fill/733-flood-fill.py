@@ -1,29 +1,25 @@
 class Solution:
-    def is_valid(self, image, r,c, fillColor):
-            return 0<=r<self.n and 0<=c<self.m and image[r][c] == fillColor and not self.visited[r][c]
-
-    def fill(self, image, sr, sc, newColor, fillColor):
-            options = [(0,1), (1,0),(-1,0),(0,-1)]
-        
-            # fill the node where at
-            if self.is_valid(image, sr,sc, fillColor):
-                image[sr][sc] = newColor
-                self.visited[sr][sc] = True
-            else:
-                return image 
-
-            for option in options:
-                image = self.fill(image, sr+option[0], sc+option[1], newColor, fillColor)
-            return image
+   
 
     def floodFill(self, image: List[List[int]], sr: int, sc: int, newColor: int) -> List[List[int]]:
-        self.n = len(image)
-        self.m = len(image[0])
-        self.visited = [[False for _ in range(self.m)] for _ in range(self.n)]
-        fillColor = image[sr][sc]
+        n = len(image)
+        m = len(image[0])
+        oc = image[sr][sc]
+        visited = set()
         
-        return self.fill(image, sr, sc, newColor,fillColor)
+        def fill(image, r,c):
+            if not (0<=r<n and 0<=c<m and (r,c) not in visited and image[r][c] == oc):
+                return image
+            
+            visited.add((r,c))
+            image[r][c] = newColor
+            
+            options = [(1,0), (0,1), (-1,0), (0,-1)]
+            for option in options:
+                image = fill(image,r+option[0], c+option[1])
+            return image
         
+        return fill(image,sr, sc)
         
         
         

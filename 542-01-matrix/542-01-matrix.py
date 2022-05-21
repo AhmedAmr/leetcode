@@ -10,21 +10,7 @@ class Solution:
         
         def is_valid(r,c):
             return (0<=r<n and 0<=c<m and (r,c) not in visited)
-        
-        
-        def bfs(q):
             
-            options = [(1,0), (-1,0), (0,1),(0,-1)]
-            while(q):
-                cr,cc,co = q.popleft()
-                if is_valid(cr, cc):
-                    visited.add((cr,cc))
-                    dest[cr][cc] = min(dest[cr][cc], co)
-                    for option in options:
-                        nr= cr+option[0]
-                        nc = cc+option[1]
-                        if is_valid(nr,nc) and mat[nr][nc] == 1:
-                            q.append((nr,nc, co+1))
             
         q= deque()
         for i in range(n):
@@ -34,8 +20,18 @@ class Solution:
                     visited = set()
                     dest[i][j] = 0
                     q.append((i,j,0))
-        bfs(q)
-                    
+        options = [(1,0), (-1,0), (0,1),(0,-1)]
+        while(q):
+            cr,cc,co = q.popleft()
+            if is_valid(cr, cc):
+                visited.add((cr,cc))
+                dest[cr][cc] = min(dest[cr][cc], co)
+                for option in options:
+                    nr= cr+option[0]
+                    nc = cc+option[1]
+                    if is_valid(nr,nc) and mat[nr][nc] == 1:
+                        q.append((nr,nc, co+1))
+
         return dest
             
             

@@ -29,8 +29,7 @@ class Solution:
                 for option in options:
                     nr= cr+option[0]
                     nc = cc+option[1]
-                    if is_valid(nr,nc) and mat[nr][nc] == 1:
-                        q.append((nr,nc, co+1))
+                    q.append((nr,nc, co+1))
 
         return dest
             

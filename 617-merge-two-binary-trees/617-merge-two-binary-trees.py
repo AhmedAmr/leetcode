@@ -9,16 +9,11 @@ class Solution:
         def merge(node1, node2):
             if node1 is None and node2 is None:
                 return 
-            if node1 is not None and node2 is not None:
-                newNode = TreeNode(val=node1.val + node2.val)
-            elif node1 is not None:
-                newNode = TreeNode(val=node1.val)
-            else:
-                newNode = TreeNode(val=node2.val)
-                
-            newNode.left = merge(node1.left if node1 else None, node2.left if node2 else None)
-            newNode.right = merge(node1.right if node1 else None, node2.right if node2 else None)
-            return newNode
+            return TreeNode(
+                val= (node1.val if node1 else 0) + (node2.val if node2 else 0),
+                left = merge(node1.left if node1 else None, node2.left if node2 else None),
+                right = merge(node1.right if node1 else None, node2.right if node2 else None)
+            )
         
         return merge(root1, root2)
                 

@@ -15,9 +15,9 @@ class Solution:
             if node1.val <= node2.val:
                 node1.next = solve(node1.next, node2)
                 return node1
-            else:
-                node2.next = solve(node1, node2.next)
-                return node2
+
+            node2.next = solve(node1, node2.next)
+            return node2
         return solve(list1, list2)
             
             

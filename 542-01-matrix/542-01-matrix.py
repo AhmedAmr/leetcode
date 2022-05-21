@@ -6,10 +6,10 @@ class Solution:
         m = len(mat[0])
         dest = [[sys.maxsize for _ in range(m)] for _ in range(n)]
         
-        visited = [[False for _ in range(m)] for _ in range(n)]
+        visited = set()
         
         def is_valid(r,c):
-            return (0<=r<n and 0<=c<m and not visited[r][c])
+            return (0<=r<n and 0<=c<m and (r,c) not in visited)
             
             
         q= deque()
@@ -22,7 +22,7 @@ class Solution:
         while(q):
             cr,cc,co = q.popleft()
             if is_valid(cr, cc):
-                visited[cr][cc] = True
+                visited.add((cr,cc))
                 dest[cr][cc] = min(dest[cr][cc], co)
                 for option in options:
                     nr= cr+option[0]

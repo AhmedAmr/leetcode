@@ -6,25 +6,23 @@ class Solution:
         m = len(mat[0])
         dest = [[sys.maxsize for _ in range(m)] for _ in range(n)]
         
-        visited = set()
+        visited = [[False for _ in range(m)] for _ in range(n)]
         
         def is_valid(r,c):
-            return (0<=r<n and 0<=c<m and (r,c) not in visited)
+            return (0<=r<n and 0<=c<m and not visited[r][c])
             
             
         q= deque()
         for i in range(n):
             for j in range(m):
-                visited = set()
                 if mat[i][j] == 0:
-                    visited = set()
                     dest[i][j] = 0
                     q.append((i,j,0))
         options = [(1,0), (-1,0), (0,1),(0,-1)]
         while(q):
             cr,cc,co = q.popleft()
             if is_valid(cr, cc):
-                visited.add((cr,cc))
+                visited[cr][cc] = True
                 dest[cr][cc] = min(dest[cr][cc], co)
                 for option in options:
                     nr= cr+option[0]

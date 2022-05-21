@@ -5,23 +5,18 @@
 #         self.next = next
 class Solution:
     def mergeTwoLists(self, list1: Optional[ListNode], list2: Optional[ListNode]) -> Optional[ListNode]:
-        if list1 is None:
-            return list2
-        if list2 is None:
-            return list1
         
-        head = None
-        
-        if list1.val < list2.val:
-            head = list1
-            list1=  list1.next
-        else:
-            head = list2
-            list2=  list2.next
-        
-        head.next= self.mergeTwoLists(list1, list2)
-        
-        return head
+        def solve(node1, node2):
+            if not node1:
+                return node2
+            if not node2:
+                return node1
             
-            
+            if node1.val <= node2.val:
+                node1.next = solve(node1.next, node2)
+                return node1
+
+            node2.next = solve(node1, node2.next)
+            return node2
+        return solve(list1, list2)
             

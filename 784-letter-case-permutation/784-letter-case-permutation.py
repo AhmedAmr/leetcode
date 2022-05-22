@@ -1,35 +1,28 @@
 class Solution:
     def letterCasePermutation(self, s: str) -> List[str]:
-        
         n = len(s)
-        visited = [False for i in range(n)]
+        m = 0
+        for c in s:
+            if c.isalpha():
+                m+=1
+        perm_count = 2**m
         permutations = []
-        
-        
-        
-        def permute(i, n):
-            nonlocal s
-            if i == n:
-                permutations.append(s)
-                return
+        functions = [str.lower, str.upper]
+        for i in range(perm_count):
+            bin_val = bin(i)[2:].rjust(m,'0')
+            max_bin = len(bin_val)
+            chars = list(s)
+            cur = 0
+            for i,char in enumerate(chars):
+                if cur >= max_bin:
+                    break;
+                if char.isalpha():
+                    chars[i] = functions[int(bin_val[cur])](chars[i])
+                    cur+=1
             
-            if s[i].isnumeric():
-                return permute(i+1,n)
-            
-            options = [str.upper, str.lower]
-            for func in options:
-                if not visited[i]:
-                    # visit
-                    visited[i] = True
-                    
-                    new_char = func(s[i])
-                    s = s[:i] + new_char + s[i+1:]
-                    permute(i+1,n)
-                    
-                    #backtrack
-                    visited[i] = False
-        
-        permute(0,n)
+            permutations.append(''.join(chars))
         return permutations
+                    
+                    
                     
         

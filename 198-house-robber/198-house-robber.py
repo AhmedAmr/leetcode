@@ -3,7 +3,7 @@ from functools import lru_cache
 class Solution:
     def rob(self, nums: List[int]) -> int:
         n = len(nums)
-        @lru_cache
+        @lru_cache(maxsize=n+1)
         def solve(i):
             if i >= n:
                 return 0

@@ -2,6 +2,7 @@ class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
         visited = [False for _ in range(n+1)]
         solns = []
+        
         def solve(n, k, start_index, chosen):
             if k == 0:
                 return solns.append(chosen)
@@ -16,7 +17,6 @@ class Solution:
                     
                     #backtrack
                     visited[i] = False
-            # return solns
         
         solve(n,k,1, [])
         

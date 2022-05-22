@@ -8,16 +8,12 @@ class Solution:
         if head is None:
             return head
         
-        left = head
-        right = head.next
-        first = True
+        left = None
+        right = head
         
         while right:
             tmp = right.next
             right.next = left
-            if first:
-                left.next=None
-                first=False
             left = right
             right=tmp
         return left

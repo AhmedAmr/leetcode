@@ -2,7 +2,7 @@ class Solution:
     def permute(self, nums: List[int]) -> List[List[int]]:
         soln = []
         
-        
+        # applying heap's algorithm     
         def heap_permute(l, size):
             if size == 1:
                 soln.append(l.copy())

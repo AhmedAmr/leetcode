@@ -6,19 +6,25 @@
 #         self.right = right
 class Solution:
     def findTarget(self, root: Optional[TreeNode], k: int) -> bool:
-        visited = set()
-
+        list_ = []
         def traverse(root):
             if root is None:
-                return False
-            return any([traverse(root.left),visit(root),traverse(root.right)])
-
-        def visit(root):
-            val = root.val
-            if val in visited:
+                return
+            traverse(root.left)
+            list_.append(root.val)
+            traverse(root.right)
+        
+        traverse(root)
+        i = 0
+        j = len(list_)-1
+        while(i<j):
+            element_sum = list_[i]+list_[j]
+            if element_sum == k:
                 return True
-            visited.add(k - val)
-            return False
+            if element_sum < k:
+                i+=1
+            else:
+                j-=1
         
 
-        return traverse(root)
+        return False

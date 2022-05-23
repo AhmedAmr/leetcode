@@ -14,7 +14,6 @@ class Solution:
             return any([traverse(root.left),visit(root),traverse(root.right)])
 
         def visit(root):
-            nonlocal k, visited
             val = root.val
             if val in visited:
                 return True
@@ -23,5 +22,3 @@ class Solution:
         
 
         return traverse(root)
-
-

@@ -4,7 +4,6 @@ class Solution:
         def bin_search(nums, target, left, right, direction='left'):
             if left > right:
                 return -1
-            n = len(nums)
             while(left <= right):
                 mid = left+(right-left)//2
                 if nums[mid] == target:
